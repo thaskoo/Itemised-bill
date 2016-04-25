@@ -24,7 +24,7 @@ it('returns list of phone calls from CellC', function (done) {
 
 describe('calculate number of calls for each network provider', function() {
 
-  it('return a list of calls from MTN', function(done) {
+  it('return a list of calls from MTN', function() {
     var billmap = readCSV.readCsv("./ItemisedBill.csv");
      var results = {
        '0832401145': 5,
@@ -34,7 +34,32 @@ describe('calculate number of calls for each network provider', function() {
        '0837351200': 1,
        '0834590001': 1
      }
-    assert.equal(totalcallsmade.FindtotalCalls(billmap, "MTN"), results);
-    done();
+    assert.deepEqual(totalcallsmade.FindtotalCalls(billmap, "MTN"), results);
+    // done();
   });
+
+it('should return a list of calls from Vodacom', function() {
+  var billmap = readCSV.readCsv("./ItemisedBill.csv");
+   var map = {
+     '0821302398': 2,
+     '0828907600' :1,
+     '0828901271' : 2,
+     '0821005078' : 1,
+     '0824009001' :1,
+     '0828009712': 1
+   }
+   assert.deepEqual(totalcallsmade.FindtotalCalls(billmap, "Vodacom"), map);
+ // done();
+});
+
+ it('should return a list of calls from CellC', function() {
+   var billmap = readCSV.readCsv("./ItemisedBill.csv");
+      var results = {
+        '0841257809' : 8,
+        '0845009087' : 1,
+        '0825605600' : 2
+      }
+      assert.deepEqual(totalcallsmade.FindtotalCalls(billmap, "CellC"), results);
+      // done();
+ });
 });
